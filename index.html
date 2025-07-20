@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kartu Kendali Izin Laptop - Modern</title>
+    <title>Kartu Kendali Izin Laptop - Berjenjang</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
@@ -62,7 +62,7 @@
             gap: 40px;
             animation: slideInUp 0.7s ease-out forwards;
             position: relative;
-            overflow: hidden; /* For inner animations */
+            overflow: hidden;
         }
 
         @keyframes slideInUp {
@@ -79,7 +79,7 @@
         }
 
         .card-section.form-section {
-            border-right: 1px dashed rgba(0,0,0,0.1); /* Divider */
+            border-right: 1px dashed rgba(0,0,0,0.1);
             padding-right: 40px;
         }
 
@@ -114,14 +114,14 @@
         .form-group input[type="text"],
         .form-group input[type="datetime-local"],
         .form-group textarea {
-            width: calc(100% - 24px); /* Account for padding */
+            width: calc(100% - 24px);
             padding: 12px;
             border: 1px solid #E0E0E0;
             border-radius: var(--border-radius-sm);
             font-size: 1em;
             color: var(--text-color);
             transition: all 0.3s ease;
-            box-sizing: border-box; /* Include padding in width */
+            box-sizing: border-box;
         }
 
         .form-group input[type="text"]:focus,
@@ -145,7 +145,24 @@
         .checkbox-group input[type="checkbox"] {
             margin-right: 12px;
             transform: scale(1.2);
-            accent-color: var(--primary-color); /* Style checkbox directly */
+            accent-color: var(--primary-color);
+        }
+
+        /* Conditional form group for kepala asrama */
+        #kepalaAsramaGroup {
+            display: none; /* Hidden by default */
+            transition: all 0.3s ease-out;
+            opacity: 0;
+            transform: translateY(10px);
+            border-left: 3px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 25px;
+        }
+
+        #kepalaAsramaGroup.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         button {
@@ -160,23 +177,22 @@
             transition: all 0.3s ease;
             width: 100%;
             box-sizing: border-box;
-            position: relative; /* For button effects */
-            overflow: hidden; /* For ripple effect */
+            position: relative;
+            overflow: hidden;
         }
 
         button:hover {
-            background-color: #5B53D3; /* Darker primary */
+            background-color: #5B53D3;
             transform: translateY(-3px);
             box-shadow: var(--shadow-light);
         }
 
         button:active {
             transform: translateY(0);
-            background-color: #4A44B2; /* Even darker */
+            background-color: #4A44B2;
             box-shadow: none;
         }
 
-        /* Ripple effect for buttons */
         .ripple {
             background-color: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
@@ -195,7 +211,7 @@
         }
 
         #izinCardsContainer {
-            display: grid; /* Use grid for better card layout */
+            display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
             padding-top: 10px;
@@ -208,12 +224,16 @@
             padding: 25px;
             position: relative;
             overflow: hidden;
-            border-left: 6px solid var(--accent-color); /* Accent border */
+            border-left: 6px solid var(--accent-color);
             animation: cardFadeInScale 0.6s ease-out forwards;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 180px; /* Consistent height */
+            min-height: 180px;
+        }
+
+        .izin-card.pulang-card {
+            border-left-color: var(--secondary-color); /* Different color for 'pulang' */
         }
 
         @keyframes cardFadeInScale {
@@ -243,7 +263,7 @@
         }
 
         .status-indicator {
-            background-color: rgba(108, 99, 255, 0.1); /* Light primary */
+            background-color: rgba(108, 99, 255, 0.1);
             color: var(--primary-color);
             padding: 6px 12px;
             border-radius: 20px;
@@ -253,6 +273,11 @@
             top: 15px;
             right: 15px;
             animation: bounceIn 0.5s ease-out;
+        }
+
+        .status-indicator.pulang {
+            background-color: rgba(255, 107, 107, 0.1); /* Light secondary */
+            color: var(--secondary-color);
         }
 
         @keyframes bounceIn {
@@ -267,17 +292,16 @@
             font-style: italic;
             margin-top: 30px;
             width: 100%;
-            grid-column: 1 / -1; /* Center across grid */
+            grid-column: 1 / -1;
         }
 
-        /* Character Animations */
         .character-emoji {
             position: absolute;
             font-size: 3.5em;
             opacity: 0;
             transition: all 0.8s ease-out;
             pointer-events: none;
-            z-index: 1; /* Above other content */
+            z-index: 1;
         }
 
         #formCharacter {
@@ -307,7 +331,6 @@
             100% { transform: translateY(0) rotate(0deg); }
         }
 
-        /* Confetti Burst */
         .confetti {
             position: absolute;
             width: 8px;
@@ -364,7 +387,7 @@
                 padding: 0;
             }
             #izinCardsContainer {
-                grid-template-columns: 1fr; /* Single column on small screens */
+                grid-template-columns: 1fr;
             }
             .character-emoji {
                 font-size: 2.5em;
@@ -374,7 +397,7 @@
 </head>
 <body>
     <div class="main-wrapper">
-        <h1>Kartu Kendali Izin Laptop</h1>
+        <h1>Sistem Kartu Kendali Izin Laptop Berjenjang</h1>
 
         <div class="control-card">
             <div class="card-section form-section">
@@ -400,6 +423,17 @@
                         <label for="keperluan">Keperluan Penggunaan:</label>
                         <textarea id="keperluan" rows="3" placeholder="Misal: Presentasi rapat, Pengembangan proyek X" required></textarea>
                     </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="bawaPulang">
+                        <label for="bawaPulang">Laptop **dibawa pulang** (memerlukan persetujuan Kepala Asrama)</label>
+                    </div>
+
+                    <div id="kepalaAsramaGroup" class="form-group">
+                        <label for="namaKepalaAsrama">Persetujuan Kepala Asrama:</label>
+                        <input type="text" id="namaKepalaAsrama" placeholder="Nama Kepala Asrama" >
+                    </div>
+
                     <div class="checkbox-group">
                         <input type="checkbox" id="setujuIzin" required>
                         <label for="setujuIzin">Saya **menyetujui** penggunaan izin laptop ini.</label>
@@ -426,12 +460,27 @@
             const noDataMessage = document.getElementById('noDataMessage');
             const formCharacter = document.getElementById('formCharacter');
             const displayCharacter = document.getElementById('displayCharacter');
+            const bawaPulangCheckbox = document.getElementById('bawaPulang');
+            const kepalaAsramaGroup = document.getElementById('kepalaAsramaGroup');
+            const namaKepalaAsramaInput = document.getElementById('namaKepalaAsrama');
 
             // Initial character animation
             setTimeout(() => {
                 formCharacter.classList.add('active');
                 displayCharacter.classList.add('active');
             }, 300);
+
+            // Toggle Kepala Asrama input visibility
+            bawaPulangCheckbox.addEventListener('change', () => {
+                if (bawaPulangCheckbox.checked) {
+                    kepalaAsramaGroup.classList.add('show');
+                    namaKepalaAsramaInput.setAttribute('required', 'required'); // Make required
+                } else {
+                    kepalaAsramaGroup.classList.remove('show');
+                    namaKepalaAsramaInput.removeAttribute('required'); // Remove required
+                    namaKepalaAsramaInput.value = ''; // Clear value
+                }
+            });
 
             // Function to add ripple effect to buttons
             function addRippleEffect(event) {
@@ -457,7 +506,6 @@
                 button.addEventListener('click', addRippleEffect);
             });
 
-
             // Load existing permissions from localStorage
             function loadIzin() {
                 const izins = JSON.parse(localStorage.getItem('laptopIzins')) || [];
@@ -466,7 +514,6 @@
                     noDataMessage.style.display = 'block';
                 } else {
                     noDataMessage.style.display = 'none';
-                    // Sort by newest first
                     izins.sort((a, b) => new Date(b.tanggalDibuat) - new Date(a.tanggalDibuat));
                     izins.forEach(izin => createIzinCard(izin));
                 }
@@ -491,33 +538,42 @@
             function createIzinCard(izin) {
                 const card = document.createElement('div');
                 card.classList.add('izin-card');
+                if (izin.bawaPulang) {
+                    card.classList.add('pulang-card');
+                }
                 card.setAttribute('data-id', izin.id);
 
                 const startDate = new Date(izin.waktuMulai);
                 const endDate = new Date(izin.waktuSelesai);
 
+                let kepalaAsramaInfo = '';
+                if (izin.bawaPulang && izin.namaKepalaAsrama) {
+                    kepalaAsramaInfo = `<p><strong>Disetujui KA:</strong> ${izin.namaKepalaAsrama}</p>`;
+                }
+
                 card.innerHTML = `
                     <h3>Izin Penggunaan Laptop</h3>
                     <p><strong>Pemberi Izin:</strong> ${izin.namaPemberiIzin}</p>
                     <p><strong>Peminjam:</strong> ${izin.namaPeminjam}</p>
+                    <p><strong>Tipe Izin:</strong> <span class="status-indicator ${izin.bawaPulang ? 'pulang' : ''}">${izin.bawaPulang ? 'Dibawa Pulang' : 'Di Lokasi'}</span></p>
                     <p><strong>Waktu:</strong> ${startDate.toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' })} - ${endDate.toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' })}</p>
                     <p><strong>Keperluan:</strong> ${izin.keperluan}</p>
-                    <span class="status-indicator">AKTIF</span>
+                    ${kepalaAsramaInfo}
                     <button class="delete-btn">Hapus Izin</button>
                 `;
 
                 const deleteBtn = card.querySelector('.delete-btn');
                 deleteBtn.addEventListener('click', (event) => {
-                    addRippleEffect(event); // Add ripple to delete button
-                    setTimeout(() => { // Delay deletion to allow ripple to show
+                    addRippleEffect(event);
+                    setTimeout(() => {
                         if (confirm('Apakah Anda yakin ingin menghapus izin ini?')) {
                             removeIzin(izin.id);
-                            createConfettiBurst(event.clientX, event.clientY); // Confetti on delete
+                            createConfettiBurst(event.clientX, event.clientY);
                         }
                     }, 200);
                 });
 
-                izinCardsContainer.prepend(card); // Add new cards to the top
+                izinCardsContainer.prepend(card);
             }
 
             // Handle form submission
@@ -529,10 +585,18 @@
                 const waktuMulai = document.getElementById('waktuMulai').value;
                 const waktuSelesai = document.getElementById('waktuSelesai').value;
                 const keperluan = document.getElementById('keperluan').value;
+                const bawaPulang = document.getElementById('bawaPulang').checked;
+                const namaKepalaAsrama = document.getElementById('namaKepalaAsrama').value;
                 const setujuIzin = document.getElementById('setujuIzin').checked;
 
                 if (!setujuIzin) {
                     alert('Anda harus menyetujui penggunaan izin ini.');
+                    return;
+                }
+
+                if (bawaPulang && namaKepalaAsrama.trim() === '') {
+                    alert('Jika laptop dibawa pulang, persetujuan Kepala Asrama wajib diisi.');
+                    namaKepalaAsramaInput.focus();
                     return;
                 }
 
@@ -543,6 +607,8 @@
                     waktuMulai,
                     waktuSelesai,
                     keperluan,
+                    bawaPulang,
+                    namaKepalaAsrama: bawaPulang ? namaKepalaAsrama : null, // Only save if bawaPulang is true
                     tanggalDibuat: new Date().toISOString()
                 };
 
@@ -550,8 +616,9 @@
                 createIzinCard(newIzin);
                 izinForm.reset();
                 document.getElementById('setujuIzin').checked = false;
+                bawaPulangCheckbox.checked = false; // Reset checkbox
+                kepalaAsramaGroup.classList.remove('show'); // Hide kepala asrama input
 
-                // Trigger character animation and confetti at the button position
                 formCharacter.classList.add('hop');
                 setTimeout(() => {
                     formCharacter.classList.remove('hop');
@@ -562,16 +629,14 @@
                 createConfettiBurst(rect.x + rect.width / 2, rect.y + rect.height / 2);
             });
 
-            // Fun confetti burst animation at a specific point
             function createConfettiBurst(x, y) {
                 for (let i = 0; i < 25; i++) {
                     const confetti = document.createElement('div');
                     confetti.classList.add('confetti');
                     confetti.style.left = `${x + (Math.random() - 0.5) * 60}px`;
                     confetti.style.top = `${y + (Math.random() - 0.5) * 60}px`;
-                    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 70%)`; // Random bright colors
+                    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 70%)`;
                     
-                    // Randomize animation for more natural look
                     confetti.style.animationDuration = `${1 + Math.random() * 0.7}s`;
                     confetti.style.animationDelay = `${Math.random() * 0.1}s`;
                     
@@ -583,7 +648,6 @@
                 }
             }
 
-            // Initial load of permissions when the page loads
             loadIzin();
         });
     </script>
